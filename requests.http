@@ -1,0 +1,56 @@
+@everlastLink = http://localhost:3000
+
+### GET semua anggota
+GET {{everlastLink}}/anggota
+
+### GET satu anggota
+GET {{everlastLink}}/anggota/1
+
+### POST
+POST {{everlastLink}}/anggota
+Content-Type: application/json
+
+{
+  "nama": "Hikaru",
+  "trainerId": "123456789",
+  "totalFans": 2500,
+  "monthlyGain": 0,
+  "status": "Aktif",
+  "tanggalBergabung": "2026-11-23"
+}
+
+### PATCH / UPDATE
+PATCH {{everlastLink}}/anggota/6
+Content-Type: application/json
+
+{
+  "monthlyGain": 120,
+  "status": "Jarang Aktif"
+}
+
+### DELETE
+DELETE {{everlastLink}}/anggota/6
+
+### 404 NotFoundException
+GET {{everlastLink}}/anggota/999
+
+### 409 ConflictException
+POST {{everlastLink}}/anggota
+Content-Type: application/json
+
+{
+  "nama": "Kembar",
+  "trainerId": "600101778",
+  "totalFans": 100
+}
+
+### 400 Validasi gagal
+POST {{everlastLink}}/anggota
+Content-Type: application/json
+
+{
+  "nama": "H",
+  "trainerId": "abc",
+  "totalFans": -5,
+  "status": "Pensiun"
+}
